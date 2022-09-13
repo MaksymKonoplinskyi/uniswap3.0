@@ -7,9 +7,7 @@ import { parseUnits } from "ethers/lib/utils";
 
 import  { getAvailableTokens, getCounterpartTokens, findPoolByTokens, isOperationPending, getFailureMessage, getSuccessMessage } from '../utils';
 import { ROUTER_ADDRESS } from "../config";
-import AmountIn from "./AmountIn";
-import AmountOut from "./AmountOut";
-import Balance from "./Balance";
+import {AmountIn, AmountOut, Balance} from "./";
 import styles from "../styles";
 
 const Exchange = ({ pools }) => {
@@ -19,7 +17,7 @@ const Exchange = ({ pools }) => {
   const [toToken, setToToken] = useState("");
   const [resetState, setResetState] = useState(false)
 
-  const fromValueBigNumber = parseUnits(fromValue || "0"); // converse the string to bigNumber
+  const fromValueBigNumber = parseUnits(fromValue) ///// || "0"); // converse the string to bigNumber
   const availableTokens = getAvailableTokens(pools);
   const counterpartTokens = getCounterpartTokens(pools, fromToken);
   const pairAddress = findPoolByTokens(pools, fromToken, toToken)?.address ?? "";
@@ -65,7 +63,7 @@ const Exchange = ({ pools }) => {
       0,
       [fromToken, toToken],
       account,
-      Math.floor(Date.now() / 1000) + 60 * 20
+      Math.floor(Date.now() / 1000) + 60 * 10
     ).then((_) => {
       setFromValue("0");
     });
@@ -77,7 +75,9 @@ const Exchange = ({ pools }) => {
     try {
       trimmedValue && parseUnits(value);
       setFromValue(value);
-    } catch (e) {}
+    } catch (e) {
+        console.log(e);
+    }
   };
 
   const onFromTokenChange = (value) => {
