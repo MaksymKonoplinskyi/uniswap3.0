@@ -3,9 +3,8 @@ import { formatUnits, parseUnits } from "ethers/lib/utils";
 
 import styles from "../styles";
 
-const Balance = () => {
-    // const Balance = ({ tokenBalance }) => {
-const tokenBalance = parseUnits("0.00147")////////////
+ const Balance = ({ tokenBalance }) => {
+
 
   return (
     <div className={styles.balance}>
@@ -13,7 +12,7 @@ const tokenBalance = parseUnits("0.00147")////////////
         {tokenBalance ? (
           <>
             <span className={styles.balanceBold}>Balance: </span>
-            {formatUnits(tokenBalance || parseUnits("0"))
+            {formatUnits(tokenBalance || parseUnits("00"))
             ////////////////////////////////////////////////////
             } 
           </>

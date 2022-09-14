@@ -10,7 +10,7 @@ const AmountOut = ({ fromToken, toToken, amountIn, pairContract, currencyValue, 
   const [activeCurrency, setActiveCurrency] = useState("Select");
   const ref = useRef()
 
-  const amountOut = useAmountsOut(pairContract, amountIn, fromToken, toToken) ?? 0;/////
+  const amountOut = useAmountsOut(pairContract, amountIn, fromToken, toToken) ?? 0;
 
   useOnClickOutside(ref, () => setShowList(false))
 
