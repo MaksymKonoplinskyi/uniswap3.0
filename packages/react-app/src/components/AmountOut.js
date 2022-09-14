@@ -22,6 +22,7 @@ const AmountOut = ({ fromToken, toToken, amountIn, pairContract, currencyValue, 
     }
   }, [currencyValue, currencies]);
 
+
   return (
     <div className={styles.amountContainer}>
       <input

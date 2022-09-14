@@ -31,8 +31,8 @@ const AmountIn = ({ value, onChange, currencyValue, onSelect, currencies, isSwap
                 className={styles.amountInput}
             />
 
-            <div className="relative" onClick={() => setShowList(prevState => !prevState)}>
-                <button className={styles.currencyButton}>
+            <div className="relative" >
+                <button className={styles.currencyButton} onClick={() => setShowList(prevState => !prevState)}>
                     {activeCurrency}
                     <img
                         src={chevronDown}
