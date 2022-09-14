@@ -12,12 +12,12 @@ import styles from "../styles";
 
 const Exchange = ({ pools }) => {
   const { account } = useEthers();
-  const [fromValue, setFromValue] = useState("0");
+  const [fromValue, setFromValue] = useState("");
   const [fromToken, setFromToken] = useState(pools[0].token0Address); // initialFromToken
   const [toToken, setToToken] = useState("");
   const [resetState, setResetState] = useState(false)
 
-  const fromValueBigNumber = parseUnits(fromValue) ///// || "0"); // converse the string to bigNumber
+  const fromValueBigNumber = parseUnits(fromValue || "0"); // converse the string to bigNumber
   const availableTokens = getAvailableTokens(pools);
   const counterpartTokens = getCounterpartTokens(pools, fromToken);
   const pairAddress = findPoolByTokens(pools, fromToken, toToken)?.address ?? "";
@@ -30,6 +30,7 @@ const Exchange = ({ pools }) => {
   const approvedNeeded = fromValueBigNumber.gt(tokenAllowance);
   const formValueIsGreaterThan0 = fromValueBigNumber.gt(parseUnits("0"));
   const hasEnoughBalance = fromValueBigNumber.lte(fromTokenBalance ?? parseUnits("0"));
+console.log(approvedNeeded);
 
   // approve initiating a contract call (similar to use state) -> gives the state and the sender...
   const { state: swapApproveState, send: swapApproveSend } =
@@ -92,7 +93,7 @@ const Exchange = ({ pools }) => {
     if(failureMessage || successMessage) {
       setTimeout(() => {
         setResetState(true)
-        setFromValue("0")
+        setFromValue("")
         setToToken("")
       }, 5000)
     }
