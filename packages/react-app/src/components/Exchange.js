@@ -27,10 +27,10 @@ const Exchange = ({ pools }) => {
   const fromTokenBalance = useTokenBalance(fromToken, account);
   const toTokenBalance = useTokenBalance(toToken, account);
   const tokenAllowance = useTokenAllowance(fromToken, account, ROUTER_ADDRESS) || parseUnits("0");
-  const approvedNeeded = fromValueBigNumber.gt(tokenAllowance);
+  const approvedNeeded = fromValueBigNumber.gt(tokenAllowance) || tokenAllowance.isZero();
   const formValueIsGreaterThan0 = fromValueBigNumber.gt(parseUnits("0"));
   const hasEnoughBalance = fromValueBigNumber.lte(fromTokenBalance ?? parseUnits("0"));
-console.log(approvedNeeded);
+  
 
   // approve initiating a contract call (similar to use state) -> gives the state and the sender...
   const { state: swapApproveState, send: swapApproveSend } =
