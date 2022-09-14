@@ -12,13 +12,13 @@ const AmountIn = ({ value, onChange, currencyValue, onSelect, currencies, isSwap
     useOnClickOutside(ref, () => setShowList(false))
 
 
-    // useEffect(() => {
-    //     if (Object.keys(currencies).includes(currencyValue)) {
-    //         setActiveCurrency(currencies[currencyValue])
-    //     } else {
-    //         setActiveCurrency("Select");
-    //     };
-    // }, [currencies, currencyValue]);
+    useEffect(() => {
+        if (Object.keys(currencies).includes(currencyValue)) {
+            setActiveCurrency(currencies[currencyValue])
+        } else {
+            setActiveCurrency("Select");
+        };
+    }, [currencies, currencyValue]);
 ///03/04/11
     return (
         <div className={styles.amountContainer}>
